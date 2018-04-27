@@ -6,9 +6,12 @@ namespace SurvivalAIGame
     {
         static void Main(string[] args)
         {
+            // start a game and give it a input device
+            var game = new Game(new UserInput());
 
+            Console.WriteLine("Starting game..");
 
-            Console.WriteLine("Hello World!");
+            game.Start();
         }
     }
 }
