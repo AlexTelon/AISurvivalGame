@@ -6,7 +6,7 @@ namespace SurvivalAIGame
 {
     public static class ConsoleHelper
     {
-        internal static void HorizontalBar(int x, int max)
+        internal static void HorizontalBar(double x, double max)
         {
             double MAX_WIDTH = 40;
             double MAX_VALUE = max;

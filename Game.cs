@@ -7,7 +7,7 @@ namespace SurvivalAIGame
     class Game
     {
         // 1 Food per worker per day
-        private int Food
+        private double Food
         {
             get => _food;
             set
@@ -19,12 +19,12 @@ namespace SurvivalAIGame
                 }
             }
         }
-        private int _food = 10;
-        private int FoodGain = 1;
+        private double _food = 10;
+        private double FoodGain = 1;
 
         // 1 Coin buys 1 food
-        private int Coin = 100;
-        private int CoinGain = 10;
+        private double Coin = 100;
+        private double CoinGain = 10;
 
         // Workers can gather stuff
         private int Workers = 1;
@@ -70,7 +70,7 @@ namespace SurvivalAIGame
             Console.WriteLine();
 
             DoAction();
-            WorkersGatherResources();
+            GatherResources();
             WorkersEat();
 
             Turn++;
@@ -80,13 +80,13 @@ namespace SurvivalAIGame
         {
             var max = Math.Max(Math.Max(Food, Coin), Workers);
 
-            Console.Write("Food " + Food + ": ");
+            Console.Write("Food {0:N1}: ", Food);
             ConsoleHelper.HorizontalBar(Food, max);
 
-            Console.Write("Coin " + Coin + ": ");
+            Console.Write("Coin {0:N1}: ", Coin);
             ConsoleHelper.HorizontalBar(Coin, max);
 
-            Console.Write("Workers " + Workers + ": ");
+            Console.Write("Workers {0:N1}: ", Workers);
             ConsoleHelper.HorizontalBar(Workers, max);
 
             Console.WriteLine();
@@ -109,15 +109,25 @@ namespace SurvivalAIGame
             var response = Input.Get() - 1;
 
             // gather food
+            if (response == 0)
+            {
+                FoodGain += 1.1;
+                Coin -= 10;
+                Workers++;
+            }
+
             if (response == 1)
             {
-
+                CoinGain += 1;
+                Coin -= 10;
+                Workers++;
             }
         }
 
-        private void WorkersGatherResources()
+        private void GatherResources()
         {
-            Food += Workers;
+            Food += FoodGain;
+            Coin += CoinGain;
         }
 
         private void WorkersEat()
