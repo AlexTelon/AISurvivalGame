@@ -12,6 +12,8 @@ namespace SurvivalAIGame
             Console.WriteLine("Starting game..");
 
             game.Start();
+
+            Console.ReadLine();
         }
     }
 }

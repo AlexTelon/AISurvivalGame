@@ -37,6 +37,7 @@ namespace SurvivalAIGame
 
         private List<string> TurnOptions = new List<string>();
 
+        public int MaxTurns = 100;
 
         internal Game(IInput input)
         {
@@ -48,12 +49,21 @@ namespace SurvivalAIGame
 
         internal void Start()
         {
-            while (!Dead)
+            while (!Dead && Turn < MaxTurns)
             {
                 NextTurn();
             }
+            Console.Clear();
+            Console.WriteLine();
+            if (Dead)
+            {
+                Console.WriteLine("You lost");
+            } else
+            {
+                Console.WriteLine("You won!");
+            }
 
-            Console.WriteLine("You lost");
+            Console.WriteLine("Coins at end: " + Coin);
         }
 
         /// <summary>
