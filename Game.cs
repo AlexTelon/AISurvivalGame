@@ -4,10 +4,11 @@ using System.Text;
 
 namespace SurvivalAIGame
 {
+    [Serializable]
     class Game
     {
         // 1 Food per worker per day
-        private double Food
+        public double Food
         {
             get => _food;
             set
@@ -31,13 +32,20 @@ namespace SurvivalAIGame
 
         private bool Dead = false;
 
-        private IInput Input;
+        [NonSerialized]
+        public IInput Input;
 
         private int Turn = 1;
 
         private List<string> TurnOptions = new List<string>();
 
         public int MaxTurns = 100;
+
+
+        public Game()
+        {
+
+        }
 
         internal Game(IInput input)
         {
